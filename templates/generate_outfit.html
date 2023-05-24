@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Generate Outfit</h1>
+    <form method="POST" action="/generate_outfit">
+        <label for="top">Select a top:</label>
+        <select id="top" name="top">
+            {% for item in tops %}
+                <option value="{{ item['name'] }}">{{ item['name'] }}</option>
+            {% endfor %}
+        </select>
+        <button type="submit">Generate Outfit</button>
+    </form>
+{% endblock %}

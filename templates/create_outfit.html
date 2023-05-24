@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Create Outfit</h1>
+    <form action="{{ url_for('create_outfit') }}" method="POST">
+        <div class="form-group">
+            <label for="tops">Tops</label>
+            <select class="form-control" id="tops" name="tops" required>
+                <option value="">Select a top</option>
+                {% for item in tops %}
+                    <option value="{{ item['name'] }}">{{ item['name'] }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="bottoms">Bottoms</label>
+            <select class="form-control" id="bottoms" name="bottoms" required>
+                <option value="">Select bottoms</option>
+                {% for item in bottoms %}
+                    <option value="{{ item['name'] }}">{{ item['name'] }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="footwear">Footwear</label>
+            <select class="form-control" id="footwear" name="footwear" required>
+                <option value="">Select footwear</option>
+                {% for item in footwear %}
+                    <option value="{{ item['name'] }}">{{ item['name'] }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="accessories">Accessories</label>
+            <select class="form-control" id="accessories" name="accessories" >
+                <option value="">Select Accessories</option>
+                {% for item in accessories %}
+                    <option value="{{ item['name'] }}">{{ item['name'] }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Create Outfit</button>
+    </form>
+{% endblock %}

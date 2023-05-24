@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Add Clothing Item</h1>
+    <form action="{{ url_for('add_item') }}" method="POST">
+        <div class="form-group">
+            <label for="item-name">Item Name</label>
+            <input type="text" class="form-control" id="item-name" name="item-name" required>
+        </div>
+        <div class="form-group">
+            <label for="category">Category</label>
+            <select class="form-control" id="category" name="category" required>
+                <option value="Tops">Tops</option>
+                <option value="Bottoms">Bottoms</option>
+                <option value="Footwear">Footwear</option>
+                <option value="Accessories">Accessories</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="type">Type</label>
+            <select class="form-control" id="type" name="type" required>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="color">Color</label>
+            <input type="text" id="color" name="color" class="jscolor" required>
+        </div>
+        
+        <button type="submit" class="btn btn-primary">Add</button>
+    </form>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jscolor/2.4.6/jscolor.min.js"></script>
+    <script>
+        // Define the item types for each category
+        const itemTypes = {
+            Tops: ["T-Shirt", "Blouse", "Jacket", "Sweater", "Coat", "Cardigan", "Overalls"],
+            Bottoms: ["Jeans", "Skirt", "Shorts", "Leggings", "Joggers"],
+            Footwear: ["Sneakers", "Boots", "Sandals"],
+            Accessories: ["Hat", "Scarf", "Watch"]
+        };
+
+        // Get the category and item type dropdown elements
+        const categoryDropdown = document.getElementById("category");
+        const typeDropdown = document.getElementById("type");
+
+        // Update the item type dropdown options when the category is changed
+        categoryDropdown.addEventListener("change", function() {
+            const selectedCategory = categoryDropdown.value;
+            const types = itemTypes[selectedCategory];
+            typeDropdown.innerHTML = "";  // Clear the previous options
+
+            // Add the new options for the selected category
+            types.forEach(function(type) {
+                const option = document.createElement("option");
+                option.value = type;
+                option.textContent = type;
+                typeDropdown.appendChild(option);
+            });
+        });
+    </script>
+{% endblock %}
